@@ -5,6 +5,7 @@ function Node(element) {
   this.next = null;
 }
 
+/* -------------------------------------------------------------- */
 function LList() {
   this.head = new Node('head');
   this.find = find;
@@ -52,6 +53,7 @@ function insert(newElement, item) {
   current.next = newNode;
 }
 
+/* -------------------------------------------------------------- */
 var cities = new LList();
 cities.insert('Conway', 'head');
 cities.insert('Russellville', 'Conway');

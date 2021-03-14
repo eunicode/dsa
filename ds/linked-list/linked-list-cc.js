@@ -1,5 +1,6 @@
-// Web Navigator
 /*
+Web Navigator
+
 addToHead()
 addToTail()
 removeHead()
@@ -7,8 +8,11 @@ printList()
 findNodeIteratively()
 findNodeRecursively()
 */
-const Node = require('./Node');
 
+/* -------------------------------------------------------------- */
+// const Node = require('./Node');
+
+/* -------------------------------------------------------------- */
 class LinkedList {
   constructor() {
     this.head = null;

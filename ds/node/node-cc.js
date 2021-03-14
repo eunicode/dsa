@@ -1,4 +1,4 @@
-// Web Navigator
+// Web Navigator (stack)
 
 class Node {
   constructor(data) {
@@ -24,3 +24,5 @@ class Node {
 }
 
 module.exports = Node;
+
+/* -------------------------------------------------------------- */
