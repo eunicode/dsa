@@ -1,4 +1,87 @@
 /* ================================================================= */
+/* TREEHOUSE - ITERATIVE #1
+https://teamtreehouse.com/library/introduction-to-algorithms/algorithms-in-code/binary-search-implementations
+
+Alternative to `target`: key, 
+Alternative to left/right: start/end 
+Alternative to middle index: mid, midpoint, midIdx, indexToCheck
+Alternative middle value: arr[mid], midVal, checking  
+
+intial `end`: arr.length - 1
+while loop condition: start <= end
+new `start`: mid + 1
+new `end`: mid - 1
+
+Works for finding strings as well.
+*/
+
+function binarySearch(array, target) {
+  let left = 0;
+  let right = array.length - 1;
+
+  while (left <= right) {
+    let mid = Math.floor((left + right) / 2);
+    // const mid = left + Math.floor((right - left) / 2);
+
+    // Target is midpoint
+    if (array[mid] === target) {
+      return mid;
+    }
+    // Target is after midpoint
+    else if (array[mid] < target) {
+      left = mid + 1;
+    }
+    // Target is before midpont
+    else {
+      right = mid - 1;
+    }
+  }
+
+  // Target does not exist in array
+  return -1;
+  // return null
+}
+
+/* ================================================================= */
+/* CODECADEMY - ITERATIVE 
+
+initial `end`: arr.length
+while loop condition: end > start
+new `start`: mid + 1
+new `end`: mid
+*/
+
+const binarySearchC = (arr, target) => {
+  let left = 0;
+  let right = arr.length; // ALERT: `END` IS LENGTH OF ARRAY.
+
+  while (right > left) {
+    const midIdx = Math.floor((left + right) / 2);
+    const midVal = arr[midIdx];
+    // console.log(midIdx);
+
+    if (midVal === target) {
+      return midIdx;
+    } else if (target > midVal) {
+      left = midIdx + 1;
+    } else {
+      right = midIdx;
+    }
+  }
+
+  return null;
+};
+
+const searchable = [1, 2, 7, 8, 22, 28, 41, 58, 67, 71, 94];
+
+const target = 41;
+
+let targetIndex = binarySearchI(searchable, target);
+console.log(`The target index is ${targetIndex}.`);
+
+module.exports = binarySearchI;
+
+/* ================================================================= */
 /* INTERVIEW CAKE - ITERATIVE 
 https://www.interviewcake.com/concept/javascript/binary-search?course=fc1&section=sorting-searching-logarithms
 */
@@ -41,66 +124,6 @@ function binarySearchIC(target, nums) {
 }
 
 /* ================================================================= */
-/* TREEHOUSE - ITERATIVE #1
-https://teamtreehouse.com/library/introduction-to-algorithms/algorithms-in-code/binary-search-implementations
-*/
-
-function binarySearch(array, key) {
-  let left = 0;
-  let right = array.length - 1;
-
-  while (left <= right) {
-    const mid = left + Math.floor((right - left) / 2);
-
-    if (array[mid] === key) {
-      return mid;
-    }
-    if (array[mid] < key) {
-      left = mid + 1;
-    } else {
-      right = mid - 1;
-    }
-  }
-
-  return -1;
-}
-
-/* ================================================================= */
-/* TREEHOUSE - ITERATIVE #2
-https://teamtreehouse.com/library/algorithms-sorting-and-searching/searching-names/code-for-binary-search
-*/
-
-function indexOfItem(collection, target) {
-  var first = 0;
-  var last = collection.length - 1;
-
-  while (first <= last) {
-    midpoint = Math.floor((first + last) / 2);
-
-    if (collection[midpoint] === target) {
-      return midpoint;
-    } else if (collection[midpoint] < target) {
-      first = midpoint + 1;
-    } else {
-      last = midpoint - 1;
-    }
-  }
-
-  return null;
-}
-
-// Note that this array is now sorted!
-const names = [
-  'Elida Sleight',
-  'Francina Vigneault',
-  'Lucie Hansman',
-  'Nancie Rubalcaba'
-];
-
-var index = indexOfItem(names, 'Lucie Hansman');
-console.log(index);
-
-/* ================================================================= */
 /* TREEHOUSE - RECURSIVE
 https://teamtreehouse.com/library/introduction-to-algorithms/algorithms-in-code/binary-search-implementations
 */
@@ -126,6 +149,7 @@ function recursiveBinarySearch(arr, target, start = 0, end = null) {
   if (target === arr[mid]) {
     return mid;
   }
+
   // Recursive case
   else {
     // Case #1: Target is less than midpoint, cut to first half of array
@@ -141,3 +165,38 @@ function recursiveBinarySearch(arr, target, start = 0, end = null) {
 
 const arr = [0, 10, 20, 30, 40, 50, 60, 100];
 console.log(recursiveBinarySearch(arr, 60));
+
+/* ================================================================= */
+/* TREEHOUSE - ITERATIVE #2 (Identical to Treehouse Iterative #1)
+https://teamtreehouse.com/library/algorithms-sorting-and-searching/searching-names/code-for-binary-search
+*/
+
+function indexOfItem(collection, target) {
+  var first = 0;
+  var last = collection.length - 1;
+
+  while (first <= last) {
+    let midpoint = Math.floor((first + last) / 2);
+
+    if (collection[midpoint] === target) {
+      return midpoint;
+    } else if (collection[midpoint] < target) {
+      first = midpoint + 1;
+    } else {
+      last = midpoint - 1;
+    }
+  }
+
+  return null;
+}
+
+// Note that this array is now sorted!
+const names = [
+  'Elida Sleight',
+  'Francina Vigneault',
+  'Lucie Hansman',
+  'Nancie Rubalcaba'
+];
+
+var index = indexOfItem(names, 'Lucie Hansman');
+console.log(index);
